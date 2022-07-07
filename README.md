@@ -1,7 +1,7 @@
 # 13d13s - 13 days 13 servers
 
 ### Compiled:
-- [ ] kotlin - javalin (never used the lang before)
+- [X] kotlin - javalin (never used the lang before)
 - [ ] clojure - ring (never used the lang before)
 - [ ] c++ - drogon (have previous experience, never used the lib)
 - [ ] haskell - yesod	(never used the lang before)
