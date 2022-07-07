@@ -1,10 +1,13 @@
 import io.github.cdimascio.dotenv.dotenv
 import io.javalin.Javalin
+import org.jose4j.jwa.AlgorithmConstraints
+import org.jose4j.jwa.AlgorithmConstraints.ConstraintType
 import org.jose4j.jwe.ContentEncryptionAlgorithmIdentifiers
 import org.jose4j.jwe.JsonWebEncryption
 import org.jose4j.jwe.KeyManagementAlgorithmIdentifiers
 import org.jose4j.keys.AesKey
 import org.jose4j.lang.ByteUtil
+import org.jose4j.lang.JoseException
 import org.ktorm.database.Database
 import org.ktorm.dsl.*
 import org.postgresql.util.PSQLException
@@ -27,6 +30,7 @@ class LoginResponse(
 )
 
 class UserData(val username: String, val password: String, val id: Int) {}
+class ProtectedResponse(val message: String) {}
 
 fun encodeJwt(payload: String, secret: String): String {
     val key: Key = AesKey(ByteUtil.concat(secret.toByteArray()))
@@ -36,6 +40,26 @@ fun encodeJwt(payload: String, secret: String): String {
     jwe.encryptionMethodHeaderParameter = ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256
     jwe.key = key
     return jwe.compactSerialization
+}
+
+fun decodeJWT(jwt: String, secret: String): String? {
+
+    val jwe = JsonWebEncryption()
+    jwe.setAlgorithmConstraints(
+        AlgorithmConstraints(
+            ConstraintType.PERMIT,
+            KeyManagementAlgorithmIdentifiers.A128KW
+        )
+    )
+    jwe.setContentEncryptionAlgorithmConstraints(
+        AlgorithmConstraints(
+            ConstraintType.PERMIT,
+            ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256
+        )
+    )
+    jwe.setKey(AesKey(ByteUtil.concat(secret.toByteArray())))
+    jwe.setCompactSerialization(jwt)
+    return jwe.getPayload()
 }
 
 fun main() {
@@ -50,7 +74,6 @@ fun main() {
     app.post("/api/auth/register") { ctx ->
         run {
             val payload = ctx.bodyValidator<RegisterPayload>().get();
-
             try {
                 database.insert(User) {
                     set(it.username, payload.username)
@@ -78,7 +101,7 @@ fun main() {
                         )
                     }
                 };
-            if(users.isEmpty()) {
+            if (users.isEmpty()) {
                 ctx.status(403);
             } else {
                 val jwt = encodeJwt(users[0]!!.username, dotenv["JWT_SECRET"])
@@ -87,6 +110,18 @@ fun main() {
         }
     })
     app.get("/api/protected", { ctx ->
-        ctx.result("protected").status(201)
+        run {
+            if (ctx.header("Authorization") != null) {
+                try {
+                    val decoded = decodeJWT(ctx.header("Authorization")!!.replace("Bearer ", ""), dotenv["JWT_SECRET"]);
+
+                    ctx.status(200).json(ProtectedResponse("hello, " + decoded.toString()))
+                } catch (e: JoseException) {
+                    ctx.status(401).json(ProtectedResponse("you're in! Just kidding, fuck you"))
+                }
+            } else {
+                ctx.status(401).json(ProtectedResponse("you're in! Just kidding, fuck you"))
+            }
+        }
     })
 }
