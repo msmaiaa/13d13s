@@ -1,5 +1,4 @@
 # 13d13s - 13 days 13 servers
-
 ### Compiled:
 - [X] kotlin - javalin (never used the lang before)
 - [ ] clojure - ring (never used the lang before)
@@ -28,3 +27,7 @@
 - Use environment variables for secrets
 - httpit benchmark results (running release builds if compiled)
 - Setup instructions and final considerations on readme
+
+#### I cant:
+- Use youtube (only documentation/articles allowed)
+- Ask someone for help
