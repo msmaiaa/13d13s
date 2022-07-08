@@ -31,3 +31,6 @@
 #### I cant:
 - Use youtube (only documentation/articles allowed)
 - Ask someone for help
+
+started: 06/07/2022 20:41:36
+time limit: 13 days (19/07/2022 20:41:36)
