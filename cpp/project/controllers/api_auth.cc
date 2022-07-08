@@ -7,6 +7,13 @@ struct RegisterPayload
 	std::string password;
 };
 
+Json::Value response_message(const std::string &message)
+{
+	Json::Value response;
+	response["message"] = message;
+	return response;
+}
+
 void auth::login(const HttpRequestPtr &req,
 								 std::function<void(const HttpResponsePtr &)> &&callback)
 {
@@ -34,9 +41,7 @@ void auth::_register(const HttpRequestPtr &req,
 
 	if (!payload.username.size() || !payload.password.size())
 	{
-		Json::Value response_body;
-		response_body["message"] = "invalid body";
-		auto resp = HttpResponse::newHttpJsonResponse(response_body);
+		auto resp = HttpResponse::newHttpJsonResponse(response_message("Invalid body"));
 		resp->setStatusCode(k400BadRequest);
 		callback(resp);
 	}
@@ -56,9 +61,7 @@ void auth::_register(const HttpRequestPtr &req,
 		// {
 		// 	error handling for duplicate username
 		// }
-		Json::Value json_body;
-		json_body["message"] = "User already exists";
-		auto resp = HttpResponse::newHttpJsonResponse(json_body);
+		auto resp = HttpResponse::newHttpJsonResponse(response_message("User already exists"));
 		resp->setStatusCode(k400BadRequest);
 		callback(resp);
 	}
