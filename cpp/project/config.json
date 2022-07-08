@@ -304,7 +304,12 @@
                 ],
                 "secure_ssl_host": "localhost:8849"
             }
-        }
+        },
+				{
+					"name": "JWT",
+					"dependencies": [],
+					"config": {}
+				}
     ],
     //custom_config: custom configuration for users. This object can be get by the app().getCustomConfig() method. 
     "custom_config": {}
