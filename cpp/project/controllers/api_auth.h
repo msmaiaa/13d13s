@@ -1,8 +1,9 @@
 #pragma once
 
+#include "utils.h"
 #include <drogon/HttpController.h>
 
-using namespace drogon;
+using namespace jwt_utils;
 
 namespace api
 {

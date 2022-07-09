@@ -1,5 +1,4 @@
 #include "api_auth.h"
-#include "plugins/JWTplugin.h"
 
 using namespace api;
 struct RegisterOrLoginPayload
@@ -13,15 +12,6 @@ Json::Value create_response_json(const std::string &message)
 	Json::Value response;
 	response["message"] = message;
 	return response;
-}
-
-std::string jwt_encode(const std::string &username)
-{
-	auto *jwtPointer = drogon::app().getPlugin<JWT>();
-	auto jwtClass = jwtPointer->init("1234567891234567");
-	std::map<std::string, std::string> payload;
-	payload["username"] = username;
-	return jwtClass.encode(payload);
 }
 
 bool is_valid_payload(const RegisterOrLoginPayload &payload)
