@@ -1,20 +1,42 @@
-# 13d13s - 13 days 13 servers
-### Compiled:
-- [X] kotlin - javalin (never used the lang before)
-- [ ] clojure - ring (never used the lang before)
-- [ ] c++ - drogon (have previous experience, never used the lib)
-- [ ] haskell - yesod	(never used the lang before)
-- [ ] elixir - phoenix (have previous experience but i suck)
-- [ ] f# - dotnet (never used the lang before)
-- [ ] ocaml - mirage (never used the lang before, but i have familiarity with the synthax)
-- [ ] rust - poem (have previous experience)
-- [ ] go - echo? (have previous experience)
+This is a challenge where i create the same api with different languages, so i can rank them (subjectively) in terms of difficulty, usefulness and fun factor. I will try to finish in one sitting as fast as possible. If the language is too exotic i won't time it.  
 
-### Interpreted:
-- [ ] php - laravel (wrote hello world years ago)
-- [ ] python - fastapi (have previous experience, never used the lib)
-- [ ] nodejs - fastify (have previous experience, never used the lib)
-- [ ] lua - lapis (have previous experience, never used the lib)
+- :red_circle: - No previous experience
+- :white_circle: - Some previous experience, not related to web server/api stuff
+- :large_blue_circle: - Have previous experience directly related to web server/api stuff
+
+| Language | Framework | Experience | Time to beat(h:m) | Done |
+| -------- | ------- | ----- | ----------- | -- |
+| kotlin  | javalin | :red_circle: | ~5:00 | ✔️ |
+| clojure  | ring | :red_circle: | | :x: | 
+| haskell  | yesod |	:red_circle: | | :x: |
+| f#  |  dotnet |:red_circle: | | :x: |
+| ocaml  | mirage | :red_circle: | | :x: |
+| zig  | zhp | :red_circle: | | :x: |
+| vlang  | vweb | :red_circle: | | :x: |
+| c#  | dotnet? | :red_circle: | | :x: |
+| swift | Swifter | :red_circle: | | :x: |
+| scala | akka-http | :red_circle: | | :x: |
+| perl | Perldancer | :red_circle: | | :x: |
+| java  | Spring | :red_circle: | | :x: |
+| crystal  | router.cr | :red_circle: | | :x: |
+| odin  | odinhttp | :red_circle: | | :x: |
+| racket  | (builtin) | :red_circle: | | :x: |
+| dart  | aqueduct | :red_circle: | | :x: |
+| julia  | HTTP.jl | :red_circle: | | :x: |
+| jolie  | (builtin) | :red_circle: | | :x: |
+| imba  | express (js interop) | :red_circle: | | :x: |
+| jython  | ? | :red_circle: | | :x: |
+| vale  | ? | :red_circle: | | :x: |
+| nim  | whip? | :red_circle: | | :x: |
+| php  | laravel | :red_circle: | | :x: |
+| ruby  | on rails |:red_circle: | | :x: |
+| c++ | drogon | :white_circle: | ~7:00 | ✔️ | 
+| elixir  | phoenix | :white_circle: | | :x: |
+| python  | fastapi |:white_circle: | | :x: |
+| lua  | lapis |:white_circle: | | :x: |
+| rust  | poem | :large_blue_circle: | | :x: |
+| go  | echo |:large_blue_circle: | | :x: |
+| nodejs  | fastify |:large_blue_circle: | | :x: |
 
 -----
 #### The server must:
@@ -31,6 +53,3 @@
 #### I cant:
 - Use youtube (only documentation/articles allowed)
 - Ask someone for help
-
-started: 06/07/2022 20:41:36
-time limit: 13 days (19/07/2022 20:41:36)
