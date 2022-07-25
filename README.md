@@ -36,7 +36,7 @@ This is a challenge where i create the same api with different languages, so i c
 | lua  | lapis |:white_circle: | | :x: |
 | rust  | poem | :large_blue_circle: | | :x: |
 | go  | echo |:large_blue_circle: | | :x: |
-| nodejs  | fastify |:large_blue_circle: | | :x: |
+| nodejs  | express |:large_blue_circle: | | :x: |
 
 -----
 #### The server must:
